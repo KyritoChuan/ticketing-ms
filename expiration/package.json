@@ -18,17 +18,16 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@types/jest": "^29.0.3",
-    "jest": "^29.0.3",
-    "ts-jest": "^29.0.1"
-  },
+  "devDependencies": {},
   "dependencies": {
-    "@tickets-kyrito/common": "^1.0.12",
+    "@types/jest": "^29.0.3",
+    "@tickets-kyrito/common": "^1.0.13",
     "@types/bull": "^3.15.9",
     "bull": "^4.9.0",
     "node-nats-streaming": "^0.3.2",
     "ts-node-dev": "^2.0.0",
+    "jest": "^29.0.3",
+    "ts-jest": "^29.0.1",
     "typescript": "^4.8.3"
   }
 }
