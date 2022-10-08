@@ -7,6 +7,10 @@ on:
     paths:
       - 'payments/**'
       
+env:
+  GKE_CLUSTER: ticketing-dev    # TODO: update to cluster name
+  GKE_ZONE: southamerica-west1-a	   # TODO: update to cluster zone
+
 jobs:
   build:
     runs-on: ubuntu-20.04
