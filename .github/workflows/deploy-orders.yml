@@ -17,8 +17,8 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: cd orders && docker build -t ticketing/orders .
-      - run: docker push ticketing/orders
+      - run: cd orders && docker build -t adriantepes/orders .
+      - run: docker push adriantepes/orders
       
       # Authentication via credentials json
       - id: 'auth'

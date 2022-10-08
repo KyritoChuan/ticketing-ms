@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: ticketing/auth
+          image: adriantepes/auth
           #image: us.gcr.io/ticketing-dev-362117/auth
           env:
             - name: MONGO_URI
