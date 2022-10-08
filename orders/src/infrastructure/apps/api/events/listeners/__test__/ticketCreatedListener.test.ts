@@ -1,6 +1,6 @@
 import { TicketCreatedListener } from '../ticketCreatedListener';
 import { natsWrapper } from '../../../utils/natsWrapper';
-import { TicketCreatedEvent } from '../../../../../../../../common/build/events/tickets/ticket-created-event';
+import { TicketCreatedEvent } from "@tickets-kyrito/common";
 import mongoose from 'mongoose';
 import { Message } from 'node-nats-streaming';
 import { Ticket } from '../../../../../persistence/mongoDB/schemas/ticket';
