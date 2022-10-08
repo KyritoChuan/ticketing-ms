@@ -1,11 +1,11 @@
-name: deploy-auth
+name: deploy-expiration
 
 on:
   push:
     branches:
       - master
     paths:
-      - 'auth/**'
+      - 'expiration/**'
       
 jobs:
   build:
@@ -17,9 +17,9 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: cd auth && docker build -t ticketing/auth .
-      - run: docker push ticketing/auth
-      
+      - run: cd expiration && docker build -t ticketing/expiration .
+      - run: docker push ticketing/expiration
+
       # Authentication via credentials json
       - id: 'auth'
         uses: 'google-github-actions/auth@v0'
@@ -32,4 +32,5 @@ jobs:
       
       # Get the GKE credentials so we can deploy to the cluster
       - run: gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
-      - run: kubectl rollout restart deployment auth-deploy
+      - run: kubectl rollout restart deployment expiration-deploy
+      

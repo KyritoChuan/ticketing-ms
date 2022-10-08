@@ -1,11 +1,11 @@
-name: deploy-auth
+name: deploy-tickets
 
 on:
   push:
     branches:
       - master
     paths:
-      - 'auth/**'
+      - 'tickets/**'
       
 jobs:
   build:
@@ -17,8 +17,8 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: cd auth && docker build -t ticketing/auth .
-      - run: docker push ticketing/auth
+      - run: cd tickets && docker build -t ticketing/tickets .
+      - run: docker push ticketing/tickets
       
       # Authentication via credentials json
       - id: 'auth'
@@ -32,4 +32,4 @@ jobs:
       
       # Get the GKE credentials so we can deploy to the cluster
       - run: gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
-      - run: kubectl rollout restart deployment auth-deploy
+      - run: kubectl rollout restart deployment tickets-deploy
