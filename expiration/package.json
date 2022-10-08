@@ -19,12 +19,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/jest": "^29.0.3",
     "jest": "^29.0.3",
     "ts-jest": "^29.0.1"
   },
   "dependencies": {
     "@tickets-kyrito/common": "^1.0.13",
+    "@types/jest": "^29.0.3",
     "@types/bull": "^3.15.9",
     "bull": "^4.9.0",
     "node-nats-streaming": "^0.3.2",
