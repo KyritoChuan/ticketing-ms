@@ -17,8 +17,8 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: cd expiration && docker build -t ticketing/expiration .
-      - run: docker push ticketing/expiration
+      - run: cd expiration && docker build -t adriantepes/expiration .
+      - run: docker push adriantepes/expiration
 
       # Authentication via credentials json
       - id: 'auth'
