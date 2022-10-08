@@ -1,0 +1,41 @@
+name: deploy-manifests
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'infra/**'
+      
+env:
+  GKE_CLUSTER: ticketing    # TODO: update to cluster name
+  GKE_ZONE: southamerica-west1-a	   # TODO: update to cluster zone
+  
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+    
+      # Authentication via credentials json
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+
+      # Setup gcloud CLI
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+      
+      # Get the GKE credentials so we can deploy to the cluster
+      - run: |-
+        gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+        
+      # Deploy sample image to the GKE cluster
+      - name: Deploy
+        run: |-
+          kubectl apply -f infra/k8s
+      
+
+      
