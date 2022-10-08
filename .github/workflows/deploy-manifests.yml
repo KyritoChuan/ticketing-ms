@@ -29,13 +29,11 @@ jobs:
         uses: google-github-actions/setup-gcloud@v0
       
       # Get the GKE credentials so we can deploy to the cluster
-      - run: |-
-        gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+      - run: gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
         
       # Deploy sample image to the GKE cluster
       - name: Deploy
-        run: |-
-          kubectl apply -f infra/k8s
+        run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
       
 
       
