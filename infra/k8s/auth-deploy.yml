@@ -14,6 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
+          #image: adriantepes/auth
           image: adriantepes/auth
           #image: us.gcr.io/ticketing-dev-362117/auth
           env:
