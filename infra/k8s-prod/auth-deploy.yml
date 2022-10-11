@@ -1,32 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tickets-deploy
+  name: auth-deploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tickets
+      app: auth
   template:
     metadata:
       labels:
-        app: tickets
+        app: auth
     spec:
       containers:
-        - name: tickets
-          image: adriantepes/tickets
-          #image: us.gcr.io/ticketing-dev-362117/tickets
+        - name: auth
+          image: adriantepes/auth
           env:
-            - name: NATS_CLIENT_ID
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-            - name: NATS_URL
-              value: 'http://nats-srv:4222'
-            - name: NATS_CLUSTER_ID
-              value: ticketing
             - name: MONGO_URI
-              value: 'mongodb://tickets-mongo-srv:27017/tickets'
+              value: 'mongodb://auth-mongo-srv:27017/auth'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
@@ -38,12 +29,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: tickets-srv
+  name: auth-srv
 spec:
   selector:
-    app: tickets
+    app: auth
   ports:
-    - name: tickets
+    - name: auth
       protocol: TCP
       port: 3000
       targetPort: 3000

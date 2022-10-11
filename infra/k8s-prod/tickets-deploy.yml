@@ -1,21 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: payments-deploy
+  name: tickets-deploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: payments
+      app: tickets
   template:
     metadata:
       labels:
-        app: payments
+        app: tickets
     spec:
       containers:
-        - name: payments
-          image: adriantepes/payments
-          #image: us.gcr.io/ticketing-dev-362117/payments
+        - name: tickets
+          image: adriantepes/tickets
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
@@ -26,29 +25,24 @@ spec:
             - name: NATS_CLUSTER_ID
               value: ticketing
             - name: MONGO_URI
-              value: 'mongodb://payments-mongo-srv:27017/payments'
+              value: 'mongodb://tickets-mongo-srv:27017/tickets'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
-            - name: STRIPE_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: stripe-secret
-                  key: STRIPE_KEY
 ---
 # ClusterIP: Exposición interna entre Nodos del cluster (comunicación entre sí).
 # Si no colocas el type, de forma predeterminada K8s sabrá que es ClusterIP.
 apiVersion: v1
 kind: Service
 metadata:
-  name: payments-srv
+  name: tickets-srv
 spec:
   selector:
-    app: payments
+    app: tickets
   ports:
-    - name: payments
+    - name: tickets
       protocol: TCP
       port: 3000
       targetPort: 3000
