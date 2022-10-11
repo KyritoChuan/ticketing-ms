@@ -4,7 +4,7 @@ import { Order } from "../../../persistence/mongoDB/schemas/order";
 import { stripe } from "../utils/stripe";
 import { Payment } from "../../../persistence/mongoDB/schemas/payment";
 import { PaymentCreatedPublisher } from '../events/publishers/paymentCreatedPublisher';
-import { natsWrapper } from '../../../../../../expiration/src/utils/natsWrapper';
+import { natsWrapper } from '../utils/natsWrapper';
 
 
 
