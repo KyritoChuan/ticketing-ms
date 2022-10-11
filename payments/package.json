@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node build/infrastructure/apps/api/index.js",
+    "start": "node build/apps/api/index.js",
     "dev": "ts-node-dev --poll src/infrastructure/apps/api/index.ts",
     "test": "jest --watchAll --no-cache",
     "test:ci": "jest",
